@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biografi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body onload="document.body.style.opacity='1'">
+    <div class="hero">
+      <div class="nav">
+        <div class="logo">
+          <h2>Biografi</h2>
+        </div>
+        <div class="link">
+          <ul>
+            <li>
+              <a href="javascript:void(0);" onclick="showPage('about')"
+                >About Me</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0);" onclick="showPage('contact')"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0);" onclick="showPage('hobi')">Hobi</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" onclick="showPage('education')"
+                >Education</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0);" onclick="showPage('experience')"
+                >Sosial Experience & Skills</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main">
+        <img src="img/INAN.png" alt="men" class="men" />
+        <div class="main-detil">
+          <p>Hello, I'm</p>
+          <h1>Muhamad Minan Nur Mu'alim</h1>
+          <h4>Data Analyst</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="content" class="hidden"></div>
+    </div>
+
+    <script>
+      function loadContent(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var targetElement = document.getElementById("content");
+            targetElement.innerHTML = xhr.responseText;
+            targetElement.style.display = "block";
+
+            // Gulir ke bagian yang dipilih
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        };
+        xhr.open("GET", id + ".html", true);
+        xhr.send();
+      }
+
+      function showPage(id) {
+        var pages = document.querySelectorAll(".hidden");
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].style.display = "none";
+        }
+
+        loadContent(id);
+      }
+    </script>
+
+    <footer>
+      <p>&copy; 2023 Biografi.</p>
+    </footer>
+  </body>
+</html>
